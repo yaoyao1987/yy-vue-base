@@ -1,6 +1,8 @@
 <template>
   <div>
-    <p class="demo-box">This is {{ message }}</p>
+    <p class="demo-box">
+      This is {{ message }}
+    </p>
   </div>
 </template>
 

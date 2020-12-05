@@ -20,6 +20,7 @@
     "build:browser": "rollup --config build/rollup.config.browser.js",
     "build:es": "rollup --config build/rollup.config.es.js",
     "build:umd": "rollup --config build/rollup.config.umd.js",
+    "lint": "eslint ./packages --ext .vue,.js",
     "deploy": "bash ./scripts/deploy.sh"
   },
   "peerDependencies": {

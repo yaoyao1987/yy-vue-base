@@ -1,0 +1,12 @@
+{
+  "name": "@yy-vue-base/hello-world",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "peerDependencies": {
+    "vue": "^2.6.12"
+  },
+  "devDependencies": {
+    "@vue/test-utils": "^1.1.1"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "name": "root",
+  "private": true,
+  "files": [
+    "lib",
+    "packages"
+  ],
+  "main": "lib/index.js",
+  "module": "lib/index.esm.js",
+  "typings": "lib/index.d.ts",
+  "unpkg": "lib/index.js",
+  "scripts": {
+    "bootstrap": "yarn --frozen-lockfile && npx lerna bootstrap && yarn gen:version",
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs",
+    "cz:changelog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "cz:commit": "git-cz",
+    "clean": "rimraf lib && mkdir lib",
+    "build:all": "npm run clean && npm run build:browser && npm run build:es && npm run build:umd",
+    "build:browser": "rollup --config build/rollup.config.browser.js",
+    "build:es": "rollup --config build/rollup.config.es.js",
+    "build:umd": "rollup --config build/rollup.config.umd.js",
+    "deploy": "bash ./scripts/deploy.sh"
+  },
+  "peerDependencies": {
+    "vue": "^2.6.12"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^11.0.0",
+    "@vue/cli-plugin-eslint": "^4.5.9",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "@vue/test-utils": "^1.1.1",
+    "@vuepress/plugin-back-to-top": "^1.7.1",
+    "@vuepress/plugin-medium-zoom": "^1.7.1",
+    "babel-eslint": "^10.1.0",
+    "commitizen": "^4.2.2",
+    "cz-conventional-changelog": "^3.3.0",
+    "cz-customizable": "^6.3.0",
+    "eslint": "^7.15.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-prettier": "^3.2.0",
+    "eslint-plugin-vue": "^7.2.0",
+    "husky": "^4.3.0",
+    "lerna": "^3.22.1",
+    "lint-staged": "^10.5.3",
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.34.1",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-css-only": "^3.0.0",
+    "rollup-plugin-gzip": "^2.5.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-uglify": "^6.0.4",
+    "rollup-plugin-uglify-es": "^0.0.1",
+    "rollup-plugin-vue": "^6.0.0",
+    "stylelint": "^13.8.0",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-standard": "^20.0.0",
+    "vue": "^2.6.12",
+    "vuepress": "^1.7.1",
+    "vuepress-plugin-code-box": "^0.0.4"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,vue}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
